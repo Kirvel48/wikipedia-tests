@@ -1,6 +1,5 @@
 package page;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Condition.visible;
@@ -11,6 +10,7 @@ public class NavigationBarPageObject {
     public static final SelenideElement downloadButton = $("[class=oo-ui-labelElement-label]");
     public static final SelenideElement randomPageButton = $("#n-randompage");
     public static final SelenideElement navigationButton = $("#ca-view");
+
     public static void clickDownloadPageButton() {
         downloadPageButton.click();
     }
@@ -25,6 +25,6 @@ public class NavigationBarPageObject {
 
     public static void checkNavigationButton() {
         navigationButton.shouldBe(visible);
- }
+    }
 
 }

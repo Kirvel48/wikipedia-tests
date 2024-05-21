@@ -14,12 +14,13 @@ public class MainPageObject {
     public static final SelenideElement createItemButton = $("[class=main-cdx-button-link]");
     public static final SelenideElement sandboxButton = $("[class=mw-ui-button]");
     public static final SelenideElement searchButton = $("#searchButton");
-    public static final SelenideElement searchResults =$(".mw-search-results");
+    public static final SelenideElement searchResults = $(".mw-search-results");
 
     public static void setSearchStringValue(String value) {
         searchString.setValue(value).pressEnter();
 
     }
+
     public static void checksearchResults(String value) {
         searchResults.shouldHave(Condition.text(value));
 
@@ -49,7 +50,8 @@ public class MainPageObject {
     public static void clickSandboxButton() {
         sandboxButton.shouldBe(Condition.visible).click();
     }
-    public static void clickSearchButton(){
+
+    public static void clickSearchButton() {
         searchButton.click();
     }
 
