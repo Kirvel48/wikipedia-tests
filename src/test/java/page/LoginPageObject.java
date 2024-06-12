@@ -6,35 +6,39 @@ import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Selenide.$;
 
 public class LoginPageObject {
-    public static final SelenideElement loginPage = $("#pt-login");
-    public static final SelenideElement usernameInput = $("#wpName1");
-    public static final SelenideElement passworgInput = $("#wpPassword1");
-    public static final SelenideElement loginButton = $("#wpLoginAttempt");
-    public static final SelenideElement userPage = $("#pt-userpage");
-    public static final SelenideElement logoutButton =$("#pt-logout");
-    public static final SelenideElement logoutPage = $("#mw-content-text");
+    SelenideElement loginPage = $("#pt-login"),
+            usernameInput = $("#wpName1"),
+            passworgInput = $("#wpPassword1"),
+            loginButton = $("#wpLoginAttempt"),
+            userPage = $("#pt-userpage"),
+            logoutButton = $("#pt-logout"),
+            logoutPage = $("#mw-content-text");
 
-    public static void openLoginPage() {
+    public void openLoginPage() {
         loginPage.click();
     }
 
-    public static void setUsername(String value) {
+    public void setUsername(String value) {
         usernameInput.setValue(value);
     }
 
-    public static void setPassword(String value) {
+    public void setPassword(String value) {
         passworgInput.setValue(value);
     }
-    public static void clickLoginButton(){
+
+    public void clickLoginButton() {
         loginButton.click();
     }
-    public static void checkUserPage(String value){
+
+    public void checkUserPage(String value) {
         userPage.shouldHave(Condition.text(value));
     }
-    public static void logout(){
+
+    public void logout() {
         logoutButton.click();
     }
-    public static void checkLogout(){
+
+    public void checkLogout() {
         logoutPage.shouldHave(Condition.text("Вы завершили сеанс работы."));
     }
 }

@@ -3,10 +3,7 @@ package config;
 import org.aeonbits.owner.Config;
 
 @Config.LoadPolicy(Config.LoadType.MERGE)
-@Config.Sources({
-        "system:properties",
-        "classpath:${env}.properties",
-})
+
 public interface WebDriverConfig extends Config {
     @Key("baseUrl")
     @DefaultValue("https://ru.wikipedia.org/wiki")
@@ -28,5 +25,9 @@ public interface WebDriverConfig extends Config {
     @Key("isRemote")
     @DefaultValue("true")
     boolean isRemote();
+
+    @Key("version")
+    @DefaultValue("122.0")
+    String getBrowserVersion();
 
 }

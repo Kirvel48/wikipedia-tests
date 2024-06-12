@@ -14,6 +14,7 @@ public class WebDriverProvider {
         Configuration.baseUrl = config.getBaseUrl();
         Configuration.browser = config.getBrowserName();
         Configuration.browserSize = config.getBrowserSize();
+        Configuration.browserVersion = config.getBrowserVersion();
         if (config.isRemote()) {
             Configuration.remote = WebDriverProvider.config.getRemoteUrl();
             DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -23,7 +24,6 @@ public class WebDriverProvider {
             ));
             Configuration.browserCapabilities = capabilities;
         }
-
-
     }
+
 }

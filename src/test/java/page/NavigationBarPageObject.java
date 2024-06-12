@@ -6,24 +6,24 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
 public class NavigationBarPageObject {
-    public static final SelenideElement downloadPageButton = $("#coll-download-as-rl");
-    public static final SelenideElement downloadButton = $("[class=oo-ui-labelElement-label]");
-    public static final SelenideElement randomPageButton = $("#n-randompage");
-    public static final SelenideElement navigationButton = $("#ca-view");
+    SelenideElement downloadPageButton = $("#coll-download-as-rl"),
+            downloadButton = $("[class=oo-ui-labelElement-label]"),
+            randomPageButton = $("#n-randompage"),
+            navigationButton = $("#ca-view");
 
-    public static void clickDownloadPageButton() {
+    public void clickDownloadPageButton() {
         downloadPageButton.click();
     }
 
-    public static void clickDownloadButton() {
+    public void clickDownloadButton() {
         downloadButton.click();
     }
 
-    public static void clickRandomPageButton() {
+    public void clickRandomPageButton() {
         randomPageButton.click();
     }
 
-    public static void checkNavigationButton() {
+    public void checkNavigationButton() {
         navigationButton.shouldBe(visible);
     }
 

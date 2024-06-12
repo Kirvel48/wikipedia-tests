@@ -1,6 +1,7 @@
 package helpers;
 
 import com.codeborne.selenide.Selenide;
+import config.BrowserstackConfig;
 import io.qameta.allure.Attachment;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -12,6 +13,11 @@ import java.nio.charset.StandardCharsets;
 import static com.codeborne.selenide.Selenide.sessionId;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static org.openqa.selenium.logging.LogType.BROWSER;
+
+import org.aeonbits.owner.ConfigFactory;
+
+import static io.restassured.RestAssured.given;
+
 
 public class Attach {
     @Attachment(value = "{attachName}", type = "image/png")
@@ -51,5 +57,22 @@ public class Attach {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static String videoUrl(String sessionId) {
+
+
+        BrowserstackConfig browserstackConfig = ConfigFactory.create(BrowserstackConfig.class, System.getProperties());
+
+        String url = String.format("https://api.browserstack.com/app-automate/sessions/%s.json", sessionId);
+
+        return given()
+                .auth().basic(browserstackConfig.getUsername(), browserstackConfig.getAuthkey())
+                .get(url)
+                .then()
+                .log().status()
+                .log().body()
+                .statusCode(200)
+                .extract().path("automation_session.video_url");
     }
 }
