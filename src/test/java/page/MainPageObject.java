@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Selenide.$;
 public class MainPageObject {
     SelenideElement searchString = $("#ooui-php-1"),
             pageTitle = $(".mw-page-title-main"),
-            wellcomeTitle = $(".mw-headline").$("[title=Википедия]"),
+            wellcomeTitle = $(".main-top-header").$("[title=Википедия]"),
             popupWellcomeTitle = $("[class=mwe-popups-container]"),
             mainHeaderPage = $("#firstHeading"),
             createItemButton = $("[class=main-cdx-button-link]"),

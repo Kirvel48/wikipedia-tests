@@ -12,7 +12,7 @@ import java.nio.charset.StandardCharsets;
 
 import static com.codeborne.selenide.Selenide.sessionId;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static helpers.Browserstack.videoUrl;
+import static java.lang.String.format;
 import static org.openqa.selenium.logging.LogType.BROWSER;
 
 import org.aeonbits.owner.ConfigFactory;
@@ -42,13 +42,42 @@ public class Attach {
                 String.join("\n", Selenide.getWebDriverLogs(BROWSER))
         );
     }
+    @Attachment(value = "Video", type = "text/html", fileExtension = ".html")
+    public static String addVideo() {
+        return "<html><body><video width='100%' height='100%' controls autoplay><source src='"
+                + getVideoUrl()
+                + "' type='video/mp4'></video></body></html>";
+    }
+
+    public static URL getVideoUrl() {
+        String videoUrl = "https://selenoid.autotests.cloud/video/" + sessionId() + ".mp4";
+        try {
+            return new URL(videoUrl);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     @Attachment(value = "Video", type = "text/html", fileExtension = ".html")
     public static String addVideo(String sessionId) {
         return "<html><body><video width='100%' height='100%' controls autoplay><source src='"
-                + Browserstack.videoUrl(sessionId)
+                + getVideoUrl(sessionId)
                 + "' type='video/mp4'></video></body></html>";
-
     }
 
+    public static String getVideoUrl(String sessionId) {
+        String url = format("https://api.browserstack.com/app-automate/sessions/%s.json", sessionId);
+        BrowserstackConfig config = ConfigFactory.create(BrowserstackConfig.class);
+
+        return given()
+                .log().all()
+                .auth().basic(config.getUsername(), config.getAuthkey())
+                .when()
+                .get(url)
+                .then()
+                .log().all()
+                .statusCode(200)
+                .extract().path("automation_session.video_url");
+    }
 }

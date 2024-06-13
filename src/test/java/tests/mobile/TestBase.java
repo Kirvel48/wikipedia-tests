@@ -32,25 +32,23 @@ public class TestBase {
 
     @BeforeEach
     void beforeEach() {
-        System.out.println("Запуск тестов осуществлён на " + System.getProperty("deviceHost") + ".");
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
         open();
     }
 
     @AfterEach
     void addAttachments() {
-        System.out.println("Тест успешно выполнен на " + deviceConfig.getPlatformVersion() + " (устройство " + System.getProperty("deviceHost") + ").");
         String sessionId = Selenide.sessionId().toString();
 
         Attach.pageSource();
         if ("emulation".equals(System.getProperty("deviceHost"))) {
             Attach.screenshotAs("Скриншот");
             closeWebDriver();
+        } else {
+            Attach.addVideo(sessionId);
         }
-        else {
-            Attach.videoUrl(sessionId);}
-            closeWebDriver();
+        closeWebDriver();
 
-        }
     }
+}
 
