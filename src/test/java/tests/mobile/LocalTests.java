@@ -19,22 +19,22 @@ public class LocalTests extends TestBase {
     @Test
     @DisplayName("Проверка онбординг-экранов")
     void onBoardingPagesTest() {
-       step("Проверить первый экран", () -> {
+       step("Первый экран", () -> {
             $(id("org.wikipedia.alpha:id/primaryTextView"))
                     .shouldHave(text("The Free Encyclopedia …in over 300 languages"));
             $(id("org.wikipedia.alpha:id/fragment_onboarding_forward_button")).click();
         });
-        step("Проверить второй экран", () -> {
+        step("Второй экран", () -> {
             $(id("org.wikipedia.alpha:id/primaryTextView"))
                     .shouldHave(text("New ways to explore"));
             $(id("org.wikipedia.alpha:id/fragment_onboarding_forward_button")).click();
         });
-        step("Проверить третий экран", () -> {
+        step("Третий экран", () -> {
             $(id("org.wikipedia.alpha:id/primaryTextView"))
                     .shouldHave(text("Reading lists with sync"));
             $(id("org.wikipedia.alpha:id/fragment_onboarding_forward_button")).click();
         });
-        step("Проверить четвертый экран", () -> {
+        step("Четвертый экран", () -> {
             $(id("org.wikipedia.alpha:id/primaryTextView"))
                     .shouldHave(text("Data & Privacy"));
             $(id("org.wikipedia.alpha:id/fragment_onboarding_done_button")).click();

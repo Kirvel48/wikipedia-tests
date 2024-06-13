@@ -12,6 +12,7 @@ import java.nio.charset.StandardCharsets;
 
 import static com.codeborne.selenide.Selenide.sessionId;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+import static helpers.Browserstack.videoUrl;
 import static org.openqa.selenium.logging.LogType.BROWSER;
 
 import org.aeonbits.owner.ConfigFactory;
@@ -43,36 +44,11 @@ public class Attach {
     }
 
     @Attachment(value = "Video", type = "text/html", fileExtension = ".html")
-    public static String addVideo() {
+    public static String addVideo(String sessionId) {
         return "<html><body><video width='100%' height='100%' controls autoplay><source src='"
-                + getVideoUrl()
+                + Browserstack.videoUrl(sessionId)
                 + "' type='video/mp4'></video></body></html>";
+
     }
 
-    public static URL getVideoUrl() {
-        String videoUrl = "https://selenoid.autotests.cloud/video/" + sessionId() + ".mp4";
-        try {
-            return new URL(videoUrl);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    public static String videoUrl(String sessionId) {
-
-
-        BrowserstackConfig browserstackConfig = ConfigFactory.create(BrowserstackConfig.class, System.getProperties());
-
-        String url = String.format("https://api.browserstack.com/app-automate/sessions/%s.json", sessionId);
-
-        return given()
-                .auth().basic(browserstackConfig.getUsername(), browserstackConfig.getAuthkey())
-                .get(url)
-                .then()
-                .log().status()
-                .log().body()
-                .statusCode(200)
-                .extract().path("automation_session.video_url");
-    }
 }
