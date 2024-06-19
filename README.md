@@ -4,14 +4,10 @@
 ## Содержание:
 
 - <a href="#tools">[Технологии и инструменты]
-
 - <a href="#autotests">[Запуск тестов из терминала]</a>
-
 - <a href="#allure">[Сборка в Jenkins]</a>
 - <a href="#allure">[Пример Allure-отчета]</a>
-[- [Интеграция с Allure TestOps] ]({https://allure.autotests.cloud/project/4272/dashboards})
 - <a href="#telegram">[Уведомления в Telegram]</a>
-- [Видео примера запуска тестов в Selenoid]
 --- 
 
 <a id="tools"></a>
