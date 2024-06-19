@@ -36,15 +36,9 @@
 ## Запуск web-тестов из терминала
 Команда для запуска тестов локально: 
 ```
-gradle clean test
+gradle clean web
+
 ```
-Команда для запуска тестов удаленно в Selenoid:
-```agsl
-gradle clean test -Dselenoid_url="selenoid.autotests.cloud/wd/hub" -Dbrowser_size="1920х1080" -Dbrowser="chrome"
-```
-
-
-
 ## Команда для запуска тестов: 
 
 ```agsl
