@@ -1,4 +1,4 @@
-package tests;
+package tests.web;
 
 import io.qameta.allure.Owner;
 import org.junit.jupiter.api.DisplayName;
@@ -11,6 +11,7 @@ import static io.qameta.allure.Allure.step;
 import page.LoginPageObject;
 
 @Tag("Login")
+@Tag("Web")
 @DisplayName("Тесты авторизации")
 
 public class LoginTests extends TestBase {

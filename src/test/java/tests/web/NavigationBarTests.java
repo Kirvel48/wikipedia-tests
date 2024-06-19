@@ -1,4 +1,4 @@
-package tests;
+package tests.web;
 
 import io.qameta.allure.Owner;
 import org.junit.jupiter.api.DisplayName;
@@ -10,6 +10,7 @@ import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
 
 @Tag("NavigationBar")
+@Tag("Web")
 @DisplayName("Тесты панели навигации")
 @Owner("Тётушкин К.И.")
 public class NavigationBarTests extends TestBase {

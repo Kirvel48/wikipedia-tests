@@ -1,6 +1,7 @@
 package tests.mobile;
 
 import com.codeborne.selenide.Selenide;
+import io.qameta.allure.Owner;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -18,6 +19,7 @@ import static io.qameta.allure.Allure.step;
 public class LocalTests extends TestBase {
     @Test
     @DisplayName("Проверка онбординг-экранов")
+    @Owner("Тётушкин К.И.")
     void onBoardingPagesTest() {
        step("Первый экран", () -> {
             $(id("org.wikipedia.alpha:id/primaryTextView"))
@@ -43,6 +45,7 @@ public class LocalTests extends TestBase {
 
     @Test
     @DisplayName("Проверка поиска")
+    @Owner("Тётушкин К.И.")
     void openArticleTest() {
         step("Закрыть экран онбординга", Selenide::back);
         step("Ввод значения в поисковую строку", () -> {
@@ -59,6 +62,7 @@ public class LocalTests extends TestBase {
 
     @Test
     @DisplayName("Соответствие поисковой выдачи запросу")
+    @Owner("Тётушкин К.И.")
     void searchPageTest() {
         step("Закрыть экран онбординга", Selenide::back);
 
