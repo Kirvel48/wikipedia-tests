@@ -48,7 +48,6 @@ clean ${TAGS}
 -DbrowserSize=${BROWSERSIZE}
 ```
 ---
-<a id="jenkins"></a>
 
 ## Запуск mobile-тестов в browserstack из терминала 
 
@@ -60,6 +59,7 @@ clean ${TAGS}
 ```
 .\gradlew clean mobile -DdeviceHost=emulation
 ```
+<a id="jenkins"></a>
 
 ## Сборка в [Jenkins](https://jenkins.autotests.cloud/job/wikiTests/)
 Для запуска необходимо перейти в Build with Parameters и нажать Build.
