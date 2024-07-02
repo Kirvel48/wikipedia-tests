@@ -1,15 +1,16 @@
 package tests.mobile;
 
-import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Owner;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import page.MainWikiPage;
+import page.ResultPage;
+import page.SearchPage;
+import page.components.OnboardingScreenComponent;
 
-import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
-import static io.appium.java_client.AppiumBy.accessibilityId;
 import static io.appium.java_client.AppiumBy.id;
 import static io.qameta.allure.Allure.step;
 
@@ -17,11 +18,18 @@ import static io.qameta.allure.Allure.step;
 @Tag("Mobile")
 
 public class LocalTests extends TestBase {
+    OnboardingScreenComponent onboardingScreenComponent = new OnboardingScreenComponent();
+    MainWikiPage mainWikiPage = new MainWikiPage();
+    SearchPage searchPage = new SearchPage();
+    ResultPage resultPage = new ResultPage();
+
     @Test
     @DisplayName("Проверка онбординг-экранов")
     @Owner("Тётушкин К.И.")
     void onBoardingPagesTest() {
-       step("Первый экран", () -> {
+
+
+        step("Первый экран", () -> {
             $(id("org.wikipedia.alpha:id/primaryTextView"))
                     .shouldHave(text("The Free Encyclopedia …in over 300 languages"));
             $(id("org.wikipedia.alpha:id/fragment_onboarding_forward_button")).click();
@@ -47,32 +55,23 @@ public class LocalTests extends TestBase {
     @DisplayName("Проверка поиска")
     @Owner("Тётушкин К.И.")
     void openArticleTest() {
-        step("Закрыть экран онбординга", Selenide::back);
-        step("Ввод значения в поисковую строку", () -> {
-            $(accessibilityId("Search Wikipedia")).click();
-            $(id("org.wikipedia.alpha:id/search_src_text")).sendKeys("Appium");
-
-        });
-        step("Проверка поисковой выдачи  ", () ->
-                $$(id("org.wikipedia.alpha:id/page_list_item_title"))
-                        .shouldHave(sizeGreaterThan(0))
-        );
+        onboardingScreenComponent.closeOnboardingScreen();
+        mainWikiPage.searchLineClick();
+        searchPage.searchLineSendKeys("Appium");
+        resultPage.checkSizeResult(0);
 
     }
+
 
     @Test
     @DisplayName("Соответствие поисковой выдачи запросу")
     @Owner("Тётушкин К.И.")
     void searchPageTest() {
-        step("Закрыть экран онбординга", Selenide::back);
+        onboardingScreenComponent.closeOnboardingScreen();
+        mainWikiPage.searchLineClick();
+        searchPage.searchLineSendKeys("Riesling");
+        resultPage.checkResult("Riesling");
 
-        step("Ввод значения в поисковую строку", () -> {
-            $(accessibilityId("Search Wikipedia")).click();
-            $(id("org.wikipedia.alpha:id/search_src_text")).sendKeys("Riesling");
-        });
-        step("Поисковая выдача соответсвует запросу", () ->
-                $(id("org.wikipedia.alpha:id/page_list_item_title"))
-                        .shouldHave(text("Riesling")));
 
     }
 }

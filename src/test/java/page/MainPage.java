@@ -5,11 +5,11 @@ import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class MainPageObject {
-    SelenideElement searchString = $("#ooui-php-1"),
-            pageTitle = $(".mw-page-title-main"),
-            wellcomeTitle = $(".main-top-header").$("[title=Википедия]"),
-            popupWellcomeTitle = $("[class=mwe-popups-container]"),
+public class MainPage {
+    private final SelenideElement searchString = $("#ooui-php-1"),
+
+    welcomeTitle = $(".main-top-header").$("[title=Википедия]"),
+            popupWelcomeTitle = $("[class=mwe-popups-container]"),
             mainHeaderPage = $("#firstHeading"),
             createItemButton = $("[class=main-cdx-button-link]"),
             sandboxButton = $("[class=mw-ui-button]"),
@@ -26,17 +26,13 @@ public class MainPageObject {
 
     }
 
-    public void checkPageTitle(String value) {
-        pageTitle.shouldHave(Condition.text(value));
 
+    public void welcomeTitleHover() {
+        welcomeTitle.hover();
     }
 
-    public void wellcomeTitleHover() {
-        wellcomeTitle.hover();
-    }
-
-    public void clickPopupWellcomeTitle() {
-        popupWellcomeTitle.shouldBe(Condition.visible).click();
+    public void clickPopupWelcomeTitle() {
+        popupWelcomeTitle.shouldBe(Condition.visible).click();
     }
 
     public void checkValueMainHeaderPage(String value) {

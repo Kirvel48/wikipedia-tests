@@ -8,14 +8,14 @@ import org.junit.jupiter.api.Test;
 import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
 
-import page.LoginPageObject;
+import page.LoginPage;
 
 @Tag("Login")
 @Tag("Web")
 @DisplayName("Тесты авторизации")
 
 public class LoginTests extends TestBase {
-    LoginPageObject loginPageObject = new LoginPageObject();
+    LoginPage loginPage = new LoginPage();
 
     @Test
     @DisplayName("Авторизация учетной записи пользователя")
@@ -23,15 +23,13 @@ public class LoginTests extends TestBase {
 
     public void loginTest() {
         step("Open main page", () -> open());
-        step("Open login page", loginPageObject::openLoginPage);
-        step("Set username", () -> loginPageObject.setUsername(userName));
-        step("Set password", () -> loginPageObject.setPassword(password));
-        step("Click login button", () -> {
-            loginPageObject.clickLoginButton();
-        });
-        step("Check login success", () -> {
-            loginPageObject.checkUserPage(userName);
-        });
+        step("Open login page", loginPage::openLoginPage);
+        step("Set username", () -> loginPage.setUsername(userName));
+        step("Set password", () -> loginPage.setPassword(password));
+        step("Click login button", () ->
+                loginPage.clickLoginButton());
+        step("Check login success", () ->
+                loginPage.checkUserPage(userName));
 
 
     }
@@ -41,12 +39,12 @@ public class LoginTests extends TestBase {
     @Owner("Тётушкин К.И.")
     public void loginOuttest() {
         step("Open main page", () -> open());
-        step("Open login page", loginPageObject::openLoginPage);
-        step("Set username", () -> loginPageObject.setUsername(userName));
-        step("Set password", () -> loginPageObject.setPassword(password));
-        step("Click login button", loginPageObject::clickLoginButton);
-        step("Logout", loginPageObject::logout);
-        step("Chek logout", loginPageObject::checkLogout);
+        step("Open login page", loginPage::openLoginPage);
+        step("Set username", () -> loginPage.setUsername(userName));
+        step("Set password", () -> loginPage.setPassword(password));
+        step("Click login button", loginPage::clickLoginButton);
+        step("Logout", loginPage::logout);
+        step("Chek logout", loginPage::checkLogout);
 
     }
 }

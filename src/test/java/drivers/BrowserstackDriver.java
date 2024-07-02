@@ -25,7 +25,6 @@ public class BrowserstackDriver implements WebDriverProvider {
         caps.setCapability("browserstack.user", browserstackConfig.getUsername());
         caps.setCapability("browserstack.key", browserstackConfig.getAuthkey());
 
-        BrowserstackConfig browserstackConfig = ConfigFactory.create(BrowserstackConfig.class, System.getProperties());
         caps.setCapability("app", browserstackConfig.getApp());
 
         caps.setCapability("device", browserstackConfig.getDevice());

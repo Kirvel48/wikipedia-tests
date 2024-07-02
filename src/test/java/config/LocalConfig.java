@@ -3,14 +3,10 @@ package config;
 import org.aeonbits.owner.Config;
 
 @Config.Sources({
-        "classpath:emulation.properties"
+        "classpath:${envMobile}.properties"
 })
 
 public interface LocalConfig extends Config {
-
-    @Key("platformName")
-    @DefaultValue("android")
-    String getPlatformName();
 
     @Key("deviceName")
     @DefaultValue("Pixel 4 API 30")

@@ -5,10 +5,10 @@ import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class LoginPageObject {
-    SelenideElement loginPage = $("#pt-login"),
+public class LoginPage {
+    private final SelenideElement loginPage = $("#pt-login"),
             usernameInput = $("#wpName1"),
-            passworgInput = $("#wpPassword1"),
+            passwordInput = $("#wpPassword1"),
             loginButton = $("#wpLoginAttempt"),
             userPage = $("#pt-userpage"),
             logoutButton = $("#pt-logout"),
@@ -23,7 +23,7 @@ public class LoginPageObject {
     }
 
     public void setPassword(String value) {
-        passworgInput.setValue(value);
+        passwordInput.setValue(value);
     }
 
     public void clickLoginButton() {

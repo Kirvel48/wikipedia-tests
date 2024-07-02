@@ -3,12 +3,10 @@ package tests.mobile;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
-import config.LocalConfig;
 import drivers.BrowserstackDriver;
 import drivers.LocalDriver;
 import helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
-import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -27,8 +25,6 @@ public class TestBase {
         if ("emulation".equals(System.getProperty("deviceHost")))
             Configuration.browser = LocalDriver.class.getName();
     }
-
-    LocalConfig deviceConfig = ConfigFactory.create(LocalConfig.class, System.getProperties());
 
     @BeforeEach
     void beforeEach() {

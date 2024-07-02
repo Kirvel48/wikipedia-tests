@@ -5,7 +5,7 @@ import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
-public class NavigationBarPageObject {
+public class NavigationBarPage {
     SelenideElement downloadPageButton = $("#coll-download-as-rl"),
             downloadButton = $("[class=oo-ui-labelElement-label]"),
             randomPageButton = $("#n-randompage"),

@@ -4,7 +4,7 @@ import io.qameta.allure.Owner;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import page.MainPageObject;
+import page.MainPage;
 
 import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
@@ -12,42 +12,40 @@ import static io.qameta.allure.Allure.step;
 @Tag("MainPage")
 @Tag("Web")
 @DisplayName("Тесты главной страницы")
+@Owner("Тётушкин К.И.")
 
 public class MainPageTests extends TestBase {
-    MainPageObject mainPageObject = new MainPageObject();
+    MainPage mainPage = new MainPage();
 
     @Test
     @DisplayName("Проверка поисковой строки")
-    @Owner("Тётушкин К.И.")
     public void searchLineTest() {
         step("Open page", () -> open());
-        step("Open search page", mainPageObject::clickSearchButton);
-        step("Set search value", () -> mainPageObject.setSearchStringValue(valueSearchString));
-        step("Check tile page", () -> mainPageObject.checksearchResults(valueSearchString));
+        step("Open search page", mainPage::clickSearchButton);
+        step("Set search value", () -> mainPage.setSearchStringValue(valueSearchString));
+        step("Check tile page", () -> mainPage.checksearchResults(valueSearchString));
 
     }
 
     @Test
     @DisplayName("Переход по ссылке из ховера")
-    @Owner("Тётушкин К.И.")
     void hoverLinkTest() {
         step("Open page", () -> open());
-        step("Open hover", mainPageObject::wellcomeTitleHover);
-        step("Click hover", mainPageObject::clickPopupWellcomeTitle);
-        step("Check redirect page", () -> mainPageObject.checkValueMainHeaderPage(checkValueHover));
+        step("Open hover", mainPage::welcomeTitleHover);
+        step("Click hover", mainPage::clickPopupWelcomeTitle);
+        step("Check redirect page", () -> mainPage.checkValueMainHeaderPage(checkValueHover));
 
 
     }
 
     @Test
     @DisplayName("Переход в песочницу создания статей")
-    @Owner("Тётушкин К.И.")
     void openCreateItemSandbox() {
         step("Open page", () -> open());
-        step("Click create item button", mainPageObject::clickCreateItemButton);
-        step("Click sandbox button", mainPageObject::clickSandboxButton);
+        step("Click create item button", mainPage::clickCreateItemButton);
+        step("Click sandbox button", mainPage::clickSandboxButton);
         step("Check value sandbox header");
-        mainPageObject.checkValueMainHeaderPage(checkValueSabdbox);
+        mainPage.checkValueMainHeaderPage(checkValueSabdbox);
     }
 
 }
