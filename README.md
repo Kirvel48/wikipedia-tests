@@ -48,12 +48,12 @@ clean ${TAGS}
 ## Запуск mobile-тестов в browserstack из терминала 
 
 ```
-.\gradlew clean mobile -DdeviceHost=browserstack
+gradle clean mobile -DdeviceHost=browserstack
 ```
 ## Запуск mobile-тестов локально из терминала
 
 ```
-.\gradlew clean mobile -DdeviceHost=emulation
+gradle clean mobile -DdeviceHost=emulation
 ```
   
 <a id="jenkins"></a>
